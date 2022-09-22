@@ -1,0 +1,88 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n l10n admin_urls static %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {{ media }}
+    <script src="{% url 'admin:jsi18n' %}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static "admin/css/base.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/extra_styles.css' %}">
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'admin/js/overwrite_confirm.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+    <link rel="stylesheet" href="{% static 'admin/css/forms.css' %}">{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} import-csv{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+        &rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+        &rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>
+        &rsaquo; {% translate 'Import CSV' %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <p>csv line syntax:&nbsp;
+        <code>{{ csv_syntax }}</code>
+    </p>
+    {% if create_complete %}
+        {% if created_objects %}
+            <h2>Created: {{ created_count }} {{ model_name }}</h2>
+            <ul>{{ created_objects|unordered_list }}</ul>
+        {% endif %}
+        {% if mod_objects %}
+            <h2>Updated: {{ mod_count }} {{ model_name }}</h2>
+            <ul>{{ mod_objects|unordered_list }}</ul>
+        {% endif %}
+        {% if create_errors %}
+            <h2 class="errors">{% translate "Errors" %}</h2>
+            <p>{% translate "Failed to create" %} {{ error_count }} {{ model_name }}</p>
+            <table>
+                <tr>
+                    <th>CSV line</th>
+                    <th>Error</th>
+                </tr>
+                {% for line, error in create_errors %}
+                    <tr>
+                        <td>{{ line }}</td>
+                        <td>{{ error }}</td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+        {% endif %}
+
+    {% else %}
+        <div>
+            <form action="{{ form_url }}" method="POST" enctype="multipart/form-data">
+                {{ form.as_p }}
+                {% csrf_token %}
+                {# modal button logic #}
+                <input type="button" value="{% translate 'Upload CSV' %}" id="submit">
+            </form>
+        </div>
+
+        {# Modal #}
+        <div class="modal fade" id="overwriteModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>{% blocktranslate with escaped_object=object %}You are about to overwrite data. This action
+                            can cause irreversible loss of data. Are you sure you want to
+                            continue?{% endblocktranslate %}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="button"
+                                data-dismiss="modal">{% translate "No, take me back" %}</button>
+                        <button type="button" class="button red-confirm" id="confirm">{% translate 'Yes, I’m sure' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,29 @@
+.add-watchlist form input[type="submit"] {
+    border-radius: 4px;
+    padding: 10px 15px;
+}
+
+.add-watchlist form .cancel-link {
+    display: inline-block;
+    vertical-align: middle;
+    height: 15px;
+    line-height: 15px;
+    border-radius: 4px;
+    padding: 10px 15px;
+    color: var(--button-fg);
+    background: var(--close-button-bg);
+    margin: 0 0 0 10px;
+}
+
+.add-watchlist form .cancel-link:active,
+.add-watchlist form .cancel-link:focus,
+.add-watchlist form .cancel-link:hover {
+    background: var(--close-button-hover-bg);
+}
+
+.import-csv .red-confirm {
+    background: var(--delete-button-bg);
+    border-radius: 4px;
+    padding: 10px 15px;
+    color: var(--button-fg);
+}
