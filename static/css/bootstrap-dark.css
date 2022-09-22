@@ -1,0 +1,107 @@
+.tab-content input, textarea {
+    background-color: #343a40 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+    margin: auto !important;
+}
+
+brand-link navbar-success:hover{
+    background-color: #00BC8C !important;
+}
+
+#id_tags {
+    display: block;
+    width: 100%;
+    padding: 10px;
+}
+
+#changelist-search .form-group {
+    margin: 10px !important;
+}
+
+.alert-success a{
+color: #ffffff !important;
+}
+#jazzy-navbar{
+  /*background-color: #BE9D5C !important;*/
+  background-color: #B19151 !important;
+
+}
+#jazzy-sidebar{
+  background-color: #B19151 !important;
+}
+#jazzy-logo{
+  background-color: #B19151 !important;
+  color: black;
+}
+/*
+#content-wrapper{
+  background-color: black !important;
+}
+content-wrapper{
+  background-color: black !important;
+}
+.content-wrapper content-header content{
+  background-color: black !important;
+}
+
+#content-header{
+  background-color: black !important;
+}
+
+.content-header content{
+  background-color: black !important;
+}
+
+
+#content{
+  background-color: black !important;
+}
+content{
+  background-color: black !important;
+}
+.content{
+  background-color: black !important;
+}
+*/
+.content-wrapper content-header content{
+  background-color: black !important;
+}
+/**/
+
+[class*=sidebar-light-] .nav-sidebar>.nav-item.menu-open>.nav-link, [class*=sidebar-light-] .nav-sidebar>.nav-item:hover>.nav-link {
+    /* background-color: rgba(0,0,0,.1); */
+    color: #212529;
+    /* color: white; */
+    background-color: white;
+
+}
+
+
+.a:hover{
+  color: red;
+}
+.brand-link {
+    display: block;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    padding: .8125rem .5rem;
+    transition: width .3s ease-in-out;
+    white-space: nowrap;
+    color: red;
+}
+
+[class*=sidebar-light] .brand-link, [class*=sidebar-light] .brand-link .pushmenu {
+    /*color: rgba(0,0,0,.8);*/
+    color: black;
+}
+[class*=sidebar-light-] .nav-sidebar>.brand-link.menu-open>.brand-link,[class*=sidebar-light-] .nac-sidebar>.brand-link:hover>.brand-link {
+    /* background-color: rgba(0,0,0,.1); */
+    color: white;
+    /* color: white; */
+    background-color: white;
+
+}
